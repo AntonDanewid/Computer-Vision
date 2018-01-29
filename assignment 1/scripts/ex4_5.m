@@ -1,3 +1,4 @@
+%For exercise 4
 P= [ 1 0 0 0; 0 1 0 0; 0 0 1 1];
 X1 = [3;2;1;1];
 X2 = [-1;-1;1;1];
@@ -5,9 +6,13 @@ X3 = [1;1;-1;1];
 pflat(P*X1)
 pflat(P*X2)
 pflat(P*X3)
+disp('Exercise 4')
+Ppos = pflat(null(P))
+pdir =P(3 ,1:3)/norm( P(3 ,1:3))
 
 
 
+%For Exercise 5
 load('compEx4.mat');
 im1 = imread ('compEx4im1.JPG');
 im2 = imread ('compEx4im2.JPG');
