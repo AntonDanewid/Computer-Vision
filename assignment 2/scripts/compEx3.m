@@ -48,7 +48,7 @@ plot (x2 (1 ,:) , x2 (2 ,:) , '. ', 'Markersize' ,20)
 
 
 
-P1 = dltsolve(X, x{1});
+P1 = dltsolve(X, x1);
 P1 = inv(N1)*P1
 x1 = P1 * X;
 %x1 = inv(N1)*x1;
