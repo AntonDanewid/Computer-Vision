@@ -49,10 +49,12 @@ A = reshape(A,m*n,[]);
 
 % solve the homogeneous linear system using SVD
 [~,~,V] = svd(A*A');
-f = V
+
 % the solution minimising |A'A| is the right singular vector
 % corresponding to the smallest singular value
-A = reshape(V(:,end),m,n);
+
+
+A =reshape ( V(1:12) ,[4 3])';
+
 
 % some normalisation, optional
-%A = A / norm(A) * sign(A(1,1));
