@@ -53,8 +53,8 @@ A = reshape(A,m*n,[]);
 % the solution minimising |A'A| is the right singular vector
 % corresponding to the smallest singular value
 
-
-A =reshape ( V(1:12) ,[4 3])';
+sol = V(:, end);
+A =reshape ( sol(1:12) ,[4 3])';
 
 
 % some normalisation, optional
