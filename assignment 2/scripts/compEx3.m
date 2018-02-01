@@ -49,10 +49,12 @@ plot (x2 (1 ,:) , x2 (2 ,:) , '. ', 'Markersize' ,20)
 
 
 P1 = dltsolve(X, x1);
-P1 = inv(N1)*P1
 x1 = P1 * X;
-%x1 = inv(N1)*x1;
-%pflat(x1);
+x1 = N1\x1;
+
+pflat(x1);
+%P2 = dltsolve(X, x2);
+%P2 = inv(N2) * P2;
 figure; 
 
 
@@ -64,12 +66,12 @@ imagesc ( im );
 plot (x1(1 ,:) , x1 (2 ,:),'. ', 'Markersize' ,20);
 hold off;
 
-% figure;
-% im2 = imread ('cube2.jpg');
-% hold on;
-% imagesc ( im2 );
-% xx = P2*Xmodel;
-% plot (xx (1 ,:) , xx (2 ,:) , '. ' , 'MarkerSize', 20)
+figure;
+im2 = imread ('cube2.jpg');
+hold on;
+imagesc ( im2 );
+xx = P2*X;
+plot (xx (1 ,:) , xx (2 ,:) , '. ' , 'MarkerSize', 20)
 
 
 

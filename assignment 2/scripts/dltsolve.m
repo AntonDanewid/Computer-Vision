@@ -24,14 +24,15 @@ for i = 1:n
    
 end
 
-P =A;
+%P =A;
 
-% [U ,S ,V] = svd ( A );
-% 
-% w = V(:,end);
-% P = reshape ( V (1:12) ,[4 3])';
+[U ,S ,V] = svd ( A );
 
+V = transpose(V);
+w = V(:,end)
+P = reshape ( w (1:12) ,[4 3])';
 
+<3
 
 
 end
