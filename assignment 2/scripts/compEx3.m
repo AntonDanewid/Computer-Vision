@@ -49,13 +49,19 @@ plot (x2 (1 ,:) , x2 (2 ,:) , '. ', 'Markersize' ,20)
 
 
 P1 = dltsolve(X, x1);
-P1 = N1\P1;
+P1 = N1\P1
+if any(P1(:,3)<0)
+    P1 = - P1;
+end
 x1 = P1 * X;
 x1 = pflat(x1);
 
 
 P2 = dltsolve(X, x2);
 P2 = N2\P2;
+if any(P2(:,3)<0)
+    P2 = - P2;
+end
 x2 = P2 * X;
 x2 = pflat(x2);
 
