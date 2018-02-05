@@ -26,7 +26,7 @@ end
 
 [U ,S ,V] = svd ( A );
 
-w = V(:,end)
+w = V(:,end);
 P = reshape ( w (1:12) ,[4 3])';
 
 

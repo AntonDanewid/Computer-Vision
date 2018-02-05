@@ -5,6 +5,7 @@ im2 = imread('cube2.jpg');
 points1 = detectSURFFeatures ( rgb2gray ( im1 ));
 points2 = detectSURFFeatures ( rgb2gray ( im2 ));
 
+figure('Name','SURF Points','NumberTitle','off')
 imshow ( im1 )
 hold on
 plot ( points1 . selectStrongest (200));
@@ -18,7 +19,7 @@ x1 = validPoints1 ( matches (: , 1)). Location';
 x2 = validPoints2 ( matches (: , 2)). Location';
 
 perm = randperm ( size ( matches ,1));
-figure ;
+figure('Name','Point correspondance','NumberTitle','off')
 imagesc ([ im1 im2 ]);
 hold on ;
 plot ([x1(1,perm (1:10)); x2(1,perm(1:10))+ size(im1,2)], ...
@@ -26,9 +27,6 @@ plot ([x1(1,perm (1:10)); x2(1,perm(1:10))+ size(im1,2)], ...
 hold off ;
 
 
-good_points = ( sqrt ( sum (( x1 - xproj1 (1:2 ,:)).^2)) < 3 & ...
-sqrt ( sum (( x2 - xproj2 (1:2 ,:)).^2)) < 3);
-X = X (: , good_points );
 
 
 

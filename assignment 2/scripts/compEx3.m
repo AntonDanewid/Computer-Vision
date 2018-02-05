@@ -23,10 +23,6 @@ N2 = [s2, 0, -s2(1)*x2mean(1); 0 s2 -s2*x2mean(2); 0 0 1];
 
 
 
-%Xmean = mean (Xmodel(1:2 ,:) ,2);
-%Xstd = (Xstd(1) + Xstd(end))/2;
-%Xstd = 1/Xstd;
-%NX = [Xstd, 0, -Xstd*Xmean(1); 0 Xstd -Xstd*Xmean(2); 0 0 1];
 
 X = [Xmodel; ones(1,37)];
 
@@ -49,7 +45,7 @@ plot (x2 (1 ,:) , x2 (2 ,:) , '. ', 'Markersize' ,20)
 
 
 P1 = dltsolve(X, x1);
-P1 = N1\P1
+P1 = N1\P1;
 if any(P1(:,3)<0)
     P1 = - P1;
 end

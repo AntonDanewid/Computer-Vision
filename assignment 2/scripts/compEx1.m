@@ -3,12 +3,12 @@ close all;
 load('compEx1data.mat');
 
 
-hold on;
+figure('Name','Reconstruction','NumberTitle','off')
 plotcams(P);
 plot3 (X (1 ,:) , X (2 ,:) , X (3 ,:) , '. ', 'Markersize' ,2);
 hold off;
 
-figure; 
+figure('Name','Projection into cameras','NumberTitle','off')
 hold on;
 axis equal;
 im = imread ( imfiles {1 });
