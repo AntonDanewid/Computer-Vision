@@ -13,6 +13,8 @@ pdir =P(3 ,1:3)/norm( P(3 ,1:3))
 
 
 %For Exercise 5
+clear;
+close;
 load('compEx4.mat');
 im1 = imread ('compEx4im1.JPG');
 im2 = imread ('compEx4im2.JPG');
@@ -43,7 +45,7 @@ figure;imagesc(im1);
 hold on;
 first = P1*U;
 colormap gray
-plot (second(1 ,:) , second(2 ,:) , '.');
+plot (first(1 ,:) , first(2 ,:) , '.');
 
 
 hold off;
@@ -51,7 +53,7 @@ hold off;
 figure;imagesc(im2);
 hold on;
 colormap gray
-plot (first(1 ,:) , first(2 ,:) , '.');
+plot (second(1 ,:) , second(2 ,:) , '.');
 
 
 %hold on; 

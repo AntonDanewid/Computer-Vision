@@ -37,9 +37,9 @@ for i = 1:9
 
 end
 
-X1 = inv(T1) * X; 
+X1 = T1\ X; 
 X1 = pflat(X1);
-X2 = inv(T2) * X;
+X2 = T2\X;
 X2 = pflat(X2);
 
 figure;

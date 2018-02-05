@@ -8,14 +8,14 @@ zero = [0 0 0 0];
 
 
 
-A = []
+A = [];
 index = 1;
 transpose(X(:,1));
 for i = 1:n
    blockL = [transpose(X(:,i)) zero zero; zero transpose(X(:,i)) zero; zero zero transpose(X(:,i))];
    
-   blockR = zeros(3, nx*4 -3);
-   blockR(:,index) = -x(:,i);
+   blockR = zeros(3, nx);
+   blockR(:,i) = -x(:,i);
 
    block = horzcat(blockL, blockR);
    A = vertcat(A, block);
@@ -24,15 +24,12 @@ for i = 1:n
    
 end
 
-%P =A;
-
 [U ,S ,V] = svd ( A );
 
-V = transpose(V);
 w = V(:,end)
 P = reshape ( w (1:12) ,[4 3])';
 
-<3
+
 
 
 end

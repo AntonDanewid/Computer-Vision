@@ -49,12 +49,18 @@ plot (x2 (1 ,:) , x2 (2 ,:) , '. ', 'Markersize' ,20)
 
 
 P1 = dltsolve(X, x1);
+P1 = N1\P1;
 x1 = P1 * X;
-x1 = N1\x1;
+x1 = pflat(x1);
 
-pflat(x1);
-%P2 = dltsolve(X, x2);
-%P2 = inv(N2) * P2;
+
+P2 = dltsolve(X, x2);
+P2 = N2\P2;
+x2 = P2 * X;
+x2 = pflat(x2);
+
+
+
 figure; 
 
 
@@ -70,10 +76,9 @@ figure;
 im2 = imread ('cube2.jpg');
 hold on;
 imagesc ( im2 );
-xx = P2*X;
-plot (xx (1 ,:) , xx (2 ,:) , '. ' , 'MarkerSize', 20)
+plot (x2 (1 ,:) , x2 (2 ,:) , '. ' , 'MarkerSize', 20)
 
-
+P1*X
 
 figure;
 hold on;
@@ -82,10 +87,23 @@ plot3([Xmodel(1,startind);Xmodel(1,endind)],...
 [Xmodel(3,startind);Xmodel(3,endind)] , 'b -' );
 P1pos = pflat(null(P1));
 p1dir=P1(3 ,1:3)/norm( P1(3 ,1:3));
+
+P2pos = pflat(null(P2));
+p2dir=P2(3 ,1:3)/norm( P2(3 ,1:3));
+
+
 plot3 (P1pos (1 ,:) ,P1pos (2 ,:) , P1pos (3 ,:) , '. ', 'Markersize',20);
-quiver3 (P1pos(1) , P1pos(2) , P1pos(3) , p1dir(1) , p1dir(2) , p1dir(3) , 5); 
+quiver3 (P1pos(1) , P1pos(2) , P1pos(3) , p1dir(1) , p1dir(2) , p1dir(3) , 5);
+plot3 (P2pos (1 ,:) ,P2pos (2 ,:) , P2pos (3 ,:) , '. ', 'Markersize',20);
+
+quiver3 (P2pos(1) , P2pos(2) , P2pos(3) , p2dir(1) , p2dir(2) , p2dir(3) , 5); 
+
+
+
 hold off;
 
-%rq(P1);
+P1inner = rq(P1)
+P2inner = rq(P2)
+
 
 
