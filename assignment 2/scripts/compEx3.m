@@ -104,8 +104,11 @@ quiver3 (P2pos(1) , P2pos(2) , P2pos(3) , p2dir(1) , p2dir(2) , p2dir(3) , 5);
 
 hold off;
 
-P1inner = rq(P1)
-P2inner = rq(P2)
+P1inner = rq(P1);
+P2inner = rq(P2);
+
+P1inner = P1inner./P1inner(3, 3)
+P2inner = P2inner./P2inner(3, 3)
 
 
 
