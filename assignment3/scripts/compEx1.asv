@@ -51,7 +51,7 @@ det(Fn)
 
 plot ( diag ( x2n'* Fn * x1n ));
 
-F = transpose(N2) *Fn * N1
+F = transpose(N2) *Fn * N1;
 F = F./F(3, 3)
 l = F*x {1}; 
 l = l ./ sqrt ( repmat ( l (1 ,:).^2 + l (2 ,:).^2 ,[3 1]));
@@ -80,6 +80,7 @@ hold off;
 
 
 
+e2 = null (F')
 
 
 figure;
