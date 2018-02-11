@@ -6,7 +6,7 @@ zero = [0 0 0 0];
 
 [mx,nx] = size(x);
 
-
+%Builds the DLT for CompEx 3
 
 A = [];
 index = 1;

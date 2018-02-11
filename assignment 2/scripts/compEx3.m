@@ -33,7 +33,7 @@ X = [Xmodel; ones(1,37)];
 
 x1 = N1 * x{1};
 x2 = N2 * x{2};
-%bigX = N1*Xmodel;
+
 
 
 
@@ -55,6 +55,7 @@ x1 = pflat(x1);
 
 P2 = dltsolve(X, x2);
 P2 = N2\P2;
+%If the camera is turned the wrong way
 if any(P2(:,3)<0)
     P2 = - P2;
 end
@@ -106,7 +107,7 @@ hold off;
 
 P1inner = rq(P1);
 P2inner = rq(P2);
-
+%Gives the inner parameters
 P1inner = P1inner./P1inner(3, 3)
 P2inner = P2inner./P2inner(3, 3)
 

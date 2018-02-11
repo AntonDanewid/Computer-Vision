@@ -41,8 +41,9 @@ end
 
 v = V(:,end);
 
-
-norm(M*v)
+disp('M*v')
+norm(M*v) 
+disp('norm(V)^2')
 norm(v)*norm(v)
 
 
@@ -58,7 +59,7 @@ l = l ./ sqrt ( repmat ( l (1 ,:).^2 + l (2 ,:).^2 ,[3 1]));
 
 
 xrandom = [];
-for i=1:20 
+for i=20:40 
     xrandom = horzcat(xrandom, x{2}(:,i));
 end
 
@@ -70,7 +71,7 @@ im = imread('kronan2.JPG');
 imagesc ( im );
 
 plot ( xrandom(1 ,: ) , xrandom (2 , : ), 'ro ' );
-for i= 1:20
+for i= 20:40
     rital(l(:,i))
 
 end

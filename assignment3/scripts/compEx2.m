@@ -3,7 +3,7 @@ compEx1
 null(transpose(F))
 
 
-e2 = null(F) % Computes the epipole
+e2 = null(F') % Computes the epipole
 e2x = [0 -e2 (3) e2 (2); e2 (3) 0 -e2 (1); -e2 (2) e2 (1) 0];
 
 P1 = [1 0 0 0; 0 1 0 0; 0 0 1 0]

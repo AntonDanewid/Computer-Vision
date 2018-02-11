@@ -30,7 +30,7 @@ T2=[1 0 0 0; 0 1 0 0; 0 0 1 0; 1/16 1/16 0 1];
 PT1 = cell(1, 9);
 PT2 = cell(1, 9);
 
-
+%Applying T1 and T2
 for i = 1:9
   
     PT1{i}= P{i}/T1;

@@ -29,7 +29,7 @@ end
 [U ,S ,V] = svd ( M );
 
 v =  V(:,end);
-M*v;
+norm(M*v)
 
 Eapprox = U*diag([1 1 0])*v;
 
@@ -43,3 +43,6 @@ else
 V = -V;
 E = U* diag ([1 1 0])* V';
 end
+
+
+
