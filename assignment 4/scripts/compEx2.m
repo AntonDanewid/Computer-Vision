@@ -14,3 +14,12 @@ matches = matchFeatures ( features1 , features2 , 'Unique' , true );
 
 x1 = validPoints1 ( matches (: , 1)). Location';
 x2 = validPoints2 ( matches (: , 2)). Location';
+
+
+v=x1;
+u=x2;
+
+v=[v;ones(1,size(v,2))];
+u=[u;ones(1,size(u,2))];
+
+

@@ -1,16 +1,32 @@
-load
-meanX = mean (X ,2); % Computes the mean 3D point
-Xtilde = (X - repmat ( meanX ,[1 size (X ,2)]));
-% Subtracts the mean from the 3D points
-M = Xtilde (1:3 ,:)* Xtilde (1:3 ,:) ’; % Computes the matrix from Exercise 2
-[V ,D ] = eig ( M ); % Computes eigenvalues and eigenvectors of M
-plane = null (X (: , randind ) ’);
-% Computes a plane from a sample set .
-plane = plane ./ norm ( plane (1:3));
-% Makes sure that the plane has a unit length norm
-inliers = abs ( plane ’* X ) <= 0.1;
-% Finds the the indices for which the distance to the plane is less than 0.1.
-3
-Assignment 4 Computer Vision, Vt1 2017 4
-% Note : Works only if the 4 th coordinate of all the points in X is 1.
-RMS = sqrt ( sum (( plane ’* X ).^2)/ size (X ,2)); % Computes the RMS error
+clear;
+load('compEx1data.mat')
+meanX = mean (X ,2);
+X = pflat(X);
+
+
+best_inliers = [];
+best_plane = [];
+ plane = null (X (: ,i)');
+ plane = plane ./ norm ( plane (1:3));
+RMS = sqrt ( sum (( plane'* X ).^2)/ size (X ,2));
+
+
+for i = 1:100
+    randind = randi(length(X),[3 1]);
+
+    plane = null (X (: ,randind)');
+    plane = plane ./ norm ( plane (1:3));
+    inliers = abs ( plane'* X ) <= 0.1;
+    if(sum(inliers) > sum(best_inliers))
+        best_inliers = inliers;
+        best_plane = plane;
+    end
+    
+
+end
+plane = best_plane;
+inliers = best_inliers;
+sum(inliers)
+RMS = sqrt ( sum (( plane'* X ).^2)/ size (X ,2));
+
+
