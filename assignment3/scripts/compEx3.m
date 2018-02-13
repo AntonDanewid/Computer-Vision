@@ -50,15 +50,14 @@ end
 
 
 x2n(:,1)'*E*x1n(:,1)
-E = E./E(3, 3);
+plot ( diag ( x2n'* E * x1n ));
+
+E = E./E(3, 3)
 F=K'\E/K;
 
 F = F./F(3, 3)
 
-figure;
-hold on;
-im = imread('kronan2.JPG');
-imagesc ( im );
+
 
 l = F*x1; 
 l = l ./ sqrt ( repmat ( l (1 ,:).^2 + l (2 ,:).^2 ,[3 1]));
@@ -71,16 +70,19 @@ end
 
 %Pick 20 point s as random
 
+
+
 figure;
 hold on;
 im = imread('kronan2.JPG');
 imagesc ( im );
 
-plot ( xrandom(1 ,: ) , xrandom (2 , : ), 'ro ' );
-for i= 20:40
-    rital(l(:,i))
+xrandom = randperm(20);
 
-end
+plot ( x{2}(1 ,xrandom ) , x{2} (2 , xrandom), 'ro ' );
+rital(l(:,xrandom))
+
+
 hold off;
 
 figure;

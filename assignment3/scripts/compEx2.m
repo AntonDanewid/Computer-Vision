@@ -31,7 +31,6 @@ end
 spacePoints = pflat(spacePoints);
 figure('Name','3D Model','NumberTitle','off')
 plot3 (spacePoints (1 ,:) ,spacePoints (2 ,:) , spacePoints (3 ,:) , '. ', 'Markersize',5);
-
 hold on;
 
 
@@ -45,5 +44,16 @@ imshow(im);
 hold on;
 plot(xproj2(1,:),xproj2(2,:),'*');
 plot(x{2}(1,:),x{2}(2,:),'ro');
+
+
+
+xproj1 = pflat(P1*spacePoints);
+figure;
+im1 = imread('kronan1.JPG');
+imshow(im1);
+hold on;
+plot(xproj1(1,:),xproj1(2,:),'*');
+plot(x{1}(1,:),x{1}(2,:),'ro');
+
 
 

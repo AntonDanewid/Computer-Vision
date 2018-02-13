@@ -86,13 +86,10 @@ hold on;
 im = imread('kronan2.JPG');
 imagesc ( im );
 
-plot ( xrandom(1 ,: ) , xrandom (2 , : ), 'ro ' );
-for i= 20:40
-    rital(l(:,i))
+xrandom = randperm(20);
 
-end
-hold off;
-
+plot ( x{2}(1 ,xrandom ) , x{2} (2 , xrandom), 'ro ' );
+rital(l(:,xrandom))
 
 
 figure;
