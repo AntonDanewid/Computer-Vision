@@ -53,20 +53,49 @@ xproj2 = pflat(P{2}*points);
 
 
 figure;
-hold on; 
-plot(xproj1(1,:), xproj1(2,:), '*', 'Markersize', 2);
-
 imshow(im1);
+
+hold on; 
+
+plot(xproj1(1,:), xproj1(2,:), '*', 'Markersize', 8);
 hold off;
 
 
 figure;
-hold on; 
-plot(xproj2(1,:), xproj2(2,:), '*', 'Markersize', 2);
-
 imshow(im2);
+
+hold on; 
+plot(xproj2(1,:), xproj2(2,:), '*', 'Markersize', 8);
+
 hold off;
 
 
+P1n = K\P{1};
+P2n = K\P{2};
+
+a = pflat(P1n*X);
+
+b = pflat(P2n*X);
 
 
+
+pi = pflat(plane);
+R = P2n(1:3,1:3);
+t = P2n(:,4);
+
+H = (R-t*pi(1:3)');
+
+homography = pflat(H*a);
+
+a = K*homography
+b = K*b;
+
+
+
+
+figure;
+imshow(im2);
+hold on
+plot(a(1,:),a(2,:),'ro');
+plot(b(1,:),b(2,:),'b+');
+hold off

@@ -74,10 +74,6 @@ l = F*x {1};
 l = l ./ sqrt ( repmat ( l (1 ,:).^2 + l (2 ,:).^2 ,[3 1]));
 
 
-xrandom = [];
-for i=20:40 
-    xrandom = horzcat(xrandom, x{2}(:,i));
-end
 
 %Pick 20 point s as random
 
