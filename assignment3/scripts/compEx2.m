@@ -1,5 +1,5 @@
 compEx1
-
+close all
 xtilde{1}=pflat(N1*x{1});
 
 e2 = null(F') % Computes the epipole

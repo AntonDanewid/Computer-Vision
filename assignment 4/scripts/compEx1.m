@@ -87,7 +87,7 @@ H = (R-t*pi(1:3)');
 
 homography = pflat(H*a);
 
-a = K*homography
+a = K*homography;
 b = K*b;
 
 

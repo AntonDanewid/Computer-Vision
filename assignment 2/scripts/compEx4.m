@@ -1,4 +1,4 @@
-clear
+
 im1 = imread('cube1.jpg');
 im2 = imread('cube2.jpg');
 

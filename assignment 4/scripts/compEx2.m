@@ -44,7 +44,8 @@ best_inliers = 0;
 best_H = [];
 zero = [0 0 0];
 
-for i = 1:2000 
+for i = 1:100
+    
    
     rand = randi(length(v), [1  4]);
     tempv = v(:, rand);

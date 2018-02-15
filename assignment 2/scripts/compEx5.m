@@ -57,11 +57,34 @@ plot (x2(1 ,:) , x1 (2 ,:), '*' );
 
 
 
-xproj1N = pflat ( P1inner\P1 * spacePoints );
-xproj2N = pflat ( P2inner\P2 * spacePoints );
+
+
 x1N = P1inner\x11;
 x2N = P2inner\x21;
-%xproj1N= inv(P1inner)*xproj1N;
+P1n = P1inner\P1;
+P2n = P2inner\P2;
+
+
+
+
+%Build the dlt
+spacePointsN= [];
+zero = [0; 0; 0];
+for i=1:257
+   M= [];
+   M= vertcat(A, P1n);
+   M= vertcat(A, P2n);
+   block = [-x1N(:,i) zero;zero  -x2N(:,i)];
+   M = horzcat(A, block);
+   [U ,S ,V] = svd ( A );
+   P = V(:,end); 
+   P = reshape ( P (1:4) ,[1 4])';
+   spacePointsN = horzcat(spacePointsN, P);
+end
+
+xproj1N = pflat (P1n * spacePointsN );
+xproj2N = pflat (P2n * spacePointsN );
+
 
 
 figure('Name','Im1 Normalized','NumberTitle','off')
