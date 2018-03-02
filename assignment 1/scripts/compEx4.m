@@ -14,7 +14,7 @@ pdir =P(3 ,1:3)/norm( P(3 ,1:3))
 
 %For Exercise 5
 clear;
-close all;
+close;
 load('compEx4.mat');
 im1 = imread ('compEx4im1.JPG');
 im2 = imread ('compEx4im2.JPG');
@@ -39,13 +39,13 @@ plot3 (P2pos (1 ,:) ,P2pos (2 ,:) , P2pos (3 ,:) , '. ', 'Markersize',20);
 quiver3 (P2pos(1) , P2pos(2) , P2pos(3) , p2dir(1) , p2dir(2) , p2dir(3) , 5); 
 
 
-second = pflat(P2*U);
+second = P2*U;
 
 figure;imagesc(im1);
 hold on;
-first = pflat(P1*U);
+first = P1*U;
 colormap gray
-plot (first(1 ,:) , first(2 ,:) , '.', 'Markersize', 4);
+plot (first(1 ,:) , first(2 ,:) , '.');
 
 
 hold off;
@@ -53,7 +53,7 @@ hold off;
 figure;imagesc(im2);
 hold on;
 colormap gray
-plot (second(1 ,:) , second(2 ,:) , '.', 'Markersize', 4);
+plot (second(1 ,:) , second(2 ,:) , '.');
 
 
 %hold on; 

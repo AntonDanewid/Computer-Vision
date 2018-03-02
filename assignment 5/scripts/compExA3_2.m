@@ -1,4 +1,4 @@
-compEx1
+compExA3_1
 
 xtilde{1}=pflat(N1*x{1});
 

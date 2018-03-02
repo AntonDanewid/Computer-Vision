@@ -28,12 +28,11 @@ for i=1:257
 end
 
 
-
-
-
 xproj1 = pflat ( P1 * spacePoints );
 xproj2 = pflat ( P2 * spacePoints );
+good_points = (sqrt(sum(( x1 - xproj1(1:2 ,:)).^2)) < 3 & sqrt( sum(( x2 - xproj2(1:2 ,:)).^2)) < 3);
 
+spacePoints = spacePoints(: , good_points );
 
 figure('Name','Im1 Non Normalized','NumberTitle','off')
 im1 = imread ('cube1.jpg');
@@ -56,59 +55,56 @@ plot (x2(1 ,:) , x1 (2 ,:), '*' );
 
 
 
-
-
-
-x1N = P1inner\x11;
-x2N = P2inner\x21;
+% 
+% xproj1N = pflat ( P1inner\P1 * spacePoints );
+% xproj2N = pflat ( P2inner\P2 * spacePoints );
+% x1N = P1inner\x11;
+% x2N = P2inner\x21;
+% %xproj1N= inv(P1inner)*xproj1N;
+% 
+% 
+% figure('Name','Im1 Normalized','NumberTitle','off')
+% hold on;
+% plot (xproj1N(1 ,:) , xproj1N (2 ,:), 'ro ' );
+% plot (x1N(1 ,:) , x1N (2 ,:), '*' );
+% 
+% 
+% figure('Name','Im2 Normalized','NumberTitle','off')
+% 
+% hold on;
+% plot (xproj2N(1 ,:) , xproj2N (2 ,:), 'ro ' );
+% plot (x2N(1 ,:) , x2N (2 ,:), '*' );
+% % 
+% 
+% 
+% 
+% 
+% 
 P1n = P1inner\P1;
 P2n = P2inner\P2;
+x1n = P1inner\x11;
+x2n = P2inner\x21;
 
-
-
-
-%Build the dlt
-spacePointsN= [];
+spacePointsN = [];
 zero = [0; 0; 0];
 for i=1:257
-   M= [];
-   M= vertcat(A, P1n);
-   M= vertcat(A, P2n);
-   block = [-x1N(:,i) zero;zero  -x2N(:,i)];
-   M = horzcat(A, block);
+   A= [];
+   A= vertcat(A, P1n);
+   A= vertcat(A, P2n);
+   block = [-x1n(:,i) zero;zero  -x2n(:,i)];
+   A = horzcat(A, block);
    [U ,S ,V] = svd ( A );
    P = V(:,end); 
    P = reshape ( P (1:4) ,[1 4])';
    spacePointsN = horzcat(spacePointsN, P);
 end
 
-xproj1N = pflat (P1n * spacePointsN );
-xproj2N = pflat (P2n * spacePointsN );
 
 
+spacePointsN = pflat(spacePointsN); 
 
-figure('Name','Im1 Normalized','NumberTitle','off')
-hold on;
-plot (xproj1N(1 ,:) , xproj1N (2 ,:), 'ro ' );
-plot (x1N(1 ,:) , x1N (2 ,:), '*' );
-
-
-figure('Name','Im2 Normalized','NumberTitle','off')
-
-hold on;
-plot (xproj2N(1 ,:) , xproj2N (2 ,:), 'ro ' );
-plot (x2N(1 ,:) , x2N (2 ,:), '*' );
-
-
-
-
-
-
-
-
-
-good_points = ( sqrt ( sum (( x1 - xproj1 (1:2 ,:)).^2)) < 3 & ...
-sqrt ( sum (( x2 - xproj2 (1:2 ,:)).^2)) < 3);
+xproj1n = pflat(P1n*spacePointsN);
+xproj2n = pflat(P2n*spacePointsN);
 
 
 
@@ -120,18 +116,17 @@ sqrt ( sum (( x2 - xproj2 (1:2 ,:)).^2)) < 3);
 
 
 
-% Finds the points with reprojection error less than 3 pixels in both images
-spacePoints = spacePoints (: , good_points );
+spacePointsN = spacePointsN (: , good_points );
 
 figure('Name','3D Model','NumberTitle','off')
 hold on;
-plot3 (spacePoints (1 ,:) ,spacePoints (2 ,:) , spacePoints (3 ,:) , '. ', 'Markersize',5);
+plot3 (spacePointsN (1 ,:) ,spacePointsN (2 ,:) , spacePointsN (3 ,:) , '. ', 'Markersize',20);
 
-P1pos = pflat(null(P1));
-p1dir=P1(3 ,1:3)/norm( P1(3 ,1:3));
+P1pos = pflat(null(P1n));
+p1dir=P1n(3 ,1:3)/norm( P1n(3 ,1:3));
 
-P2pos = pflat(null(P2));
-p2dir=P2(3 ,1:3)/norm( P2(3 ,1:3));
+P2pos = pflat(null(P2n));
+p2dir=P2n(3 ,1:3)/norm( P2n(3 ,1:3));
 
 
 plot3 (P1pos (1 ,:) ,P1pos (2 ,:) , P1pos (3 ,:) , '. ', 'Markersize',20);
@@ -140,6 +135,9 @@ plot3 (P2pos (1 ,:) ,P2pos (2 ,:) , P2pos (3 ,:) , '. ', 'Markersize',20);
 
 quiver3 (P2pos(1) , P2pos(2) , P2pos(3) , p2dir(1) , p2dir(2) , p2dir(3) , 5); 
 hold off;
+% 
+% 
+% 
 
 
 

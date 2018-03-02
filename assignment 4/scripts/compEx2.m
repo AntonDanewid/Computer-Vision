@@ -44,8 +44,7 @@ best_inliers = 0;
 best_H = [];
 zero = [0 0 0];
 
-for i = 1:100
-    
+for i = 1:2000 
    
     rand = randi(length(v), [1  4]);
     tempv = v(:, rand);
@@ -64,7 +63,7 @@ for i = 1:100
     for j=1:length(v)
        
         if norm(pflat(H*v(:,j))-u(:,j))<=5
-            inliers = inliers +1
+            inliers = inliers +1;
         end
     end
     if(inliers > best_inliers)
@@ -78,9 +77,9 @@ for i = 1:100
     
 end
 
-
-bestH = best_H
-bestH = double(bestH)
+best_inliers
+bestH = best_H;
+bestH = double(bestH);
 tform = maketform('projective', bestH');
 
 transfbounds = findbounds(tform,[1 1; size(A ,2) size(A ,1)]);
